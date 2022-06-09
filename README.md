@@ -1,4 +1,4 @@
-# Stellar-Classification---Sloan-Digital-Sky-Survey-17
+# Stellar-Classification : Sloan-Digital-Sky-Survey-17
 
 ![Stars and Galaxies](https://media2.giphy.com/media/OYfQ5c7FPeBxe/giphy.gif)
 ![Stellar Classification](https://scitechdaily.com/images/Primordial-Stellar-Stream-Near-Milky-Way-scaled.jpg)
