@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="star.ico">
+    <title>Stellar Classification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f5ed87;
+        }
+        .navbar-brand {
+            display: block;
+            margin: auto;
+            color: #f04ada;
+            font-weight: bold;
+            font-family: "Helvetica";
+        }
+        .submit-button {
+            display: block;
+            margin: auto;
+        }
+        p {
+            text-align: center;
+        }
+        p:hover {
+            filter: brightness(150%);
+        }
+        .card {
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+        h5 {
+            font-weight: bold;
+            font-family: "Helvetica",sans;
+            color: #0a0e73;
+            font-size: 1.8rem;
+        }
+        h1{
+            color: #6b0969;
+            font-family: 'Georgia', serif;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .first_row {
+            margin-top: 5rem;
+        }
+        .last_row {
+            margin-bottom: 2rem;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            margin: 0 auto;
+            float: none;
+            margin-bottom: 10px;
+            background-color: #56f0ce;
+            border: 2px solid #0ac704;
+            border-width: 0.5rem;
+            border-size: 6rem;
+        }
+        .copyright{
+            color: #f01ad3;
+            font-size: 1.5rem;
+            font-family: 'Arial',sans-serif;
+        }
+        .predict-dec {
+            text-align: center;
+            font-weight: bold;
+            color: #943f06;
+            font-size: 2rem;
+            font-family: 'Helvetica',sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1"><h1>Stellar Classification</h1></span>
+    </nav>
+    <div class="container">
+        <form action="/predict" method="post">
+            <div class="row first_row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Right Ascension angle (at J2000 epoch):</h5>
+                            <input type="number" min="0.005" max="359.999" step="0.001" name="alpha" id="alpha" required="required">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Declination angle (at J2000 epoch):</h5>
+                            <input type="number" min="-18.785" max="83.000" step="0.001" name="delta" id="delta" required="required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ultraviolet filter in the photometric system:</h5>
+                            <input type="number" min="15.349" max="28.690" step="0.001" name="u" id="u" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Red filter in the photometric system:</h5>
+                            <input type="number" min="13.772" max="25.408" step="0.001" name="r" id="r" required="required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Run number used to identify the specific scan:</h5>
+                            <input type="number" min="109" max="8162" name="run_id" id="run_id" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Camera column to identify the scanline within the run:</h5>
+                            <input type="number" min="1" max="6" name="cam_col" id="cam_col" required="required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Field number to identify each field:</h5>
+                            <input type="number" min="11.0" max="479.5" step="0.1" name="field_id" id="field_id" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Redshift value based on the increase in wavelength:</h5>
+                            <input type="number" min="-0.009" max="1.678" step="0.001" name="redshift" id="redshift" required="required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Plate ID which identifies each plate in Sloan Digital Sky Survey(SDSS):</h5>
+                            <input type="number" min="266.0" max="12547.0" step="0.1" name="plate" id="plate" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Fiber ID that identifies the fiber that pointed the light at the focal plane in each observation:</h5>
+                            <input type="number" min="1" max="1000" name="fiber_id" id="fiber_id" required="required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row last_row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Modified Julian Age that is used to indicate when a given piece of Sloan Digital Sky Survey(SDSS) data was taken:</h5>
+                            <input type="number" min="141.39" max="161.45" step="0.01" name="mjy" id="mjy" required="required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <!-- Submit -->
+            <input type="submit" value="Submit" class="btn btn-danger submit-button">
+        </form>
+        <br>
+        <h3 class="predict-dec">{{ prediction_text }}</h3> 
+        <br>
+        <p class="copyright">@2022 Sayam Kumar</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+</html>
